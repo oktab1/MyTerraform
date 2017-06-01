@@ -292,3 +292,19 @@ resource "aws_ecs_service" "www" {
     container_port = 80
   }
 }
+
+# Route 53
+data "aws_route53_zone" "zone" {
+  name = "tmp.refactor.zone."
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = "${data.aws_route53_zone.zone.zone_id}"
+  name    = "${data.aws_route53_zone.zone.name}"
+  type    = "A"
+  alias {
+    name                   = "${aws_elb.elb.dns_name}"
+    zone_id                = "${aws_elb.elb.zone_id}"
+    evaluate_target_health = true
+  }
+}
