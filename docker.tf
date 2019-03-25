@@ -1,5 +1,7 @@
 provider "aws" {
   region     = "us-east-2"
+  access_key = "AKIAISD52TBECRVLIVUQ"
+  secret_key = "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"
 }
 
 variable "zones" {
@@ -296,6 +298,7 @@ resource "aws_ecs_service" "www" {
 # Route 53
 data "aws_route53_zone" "zone" {
   name = "tmp.refactor.zone."
+  private_zone=true
 }
 
 resource "aws_route53_record" "www" {
