@@ -2,3 +2,4 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform.tfstate.lock.info
+.terraform/plugins/windows_amd64/terraform-provider-aws_v2.2.0_x4.exe
